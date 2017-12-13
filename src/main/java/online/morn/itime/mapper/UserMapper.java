@@ -17,4 +17,12 @@ public interface UserMapper {
      * @return
      */
     public UserDO selectUserByNameAndPassword(@Param("name") String name, @Param("password") String password);
+
+    /**
+     * 查询用户根据ID
+     * @auther Horner 2017/12/13 22:45
+     * @param id
+     * @return
+     */
+    public UserDO selectUserById(@Param("id") String id);
 }

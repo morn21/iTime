@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:include="footer :: headBasic"></div>
+</head>
+<body>
+
+<div class="panel-body">
+    <div class="input-group marginTop10">
+        <span class="input-group-addon">用户名</span>
+        <input type="text" class="form-control" value="" id="userName"/>
+    </div>
+    <div class="input-group marginTop10">
+        <span class="input-group-addon">密码</span>
+        <input type="password" class="form-control" value="" id="userPassword"/>
+    </div>
+    <div class="marginTop10">
+        <button class="btn btn-success" type="button" id="loginButton">
+            登录
+        </button>
+    </div>
+    <div class="marginTop10" style="color:red;" id="errorMsgDiv"></div>
+</div>
+
+</body>
+</html>
+<script src="/js/page/login.js"></script>

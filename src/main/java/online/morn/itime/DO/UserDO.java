@@ -1,7 +1,5 @@
 package online.morn.itime.DO;
 
-import java.sql.Date;
-
 /**
  * 用户表
  * @auther Horner 2017/12/11 23:26

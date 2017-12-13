@@ -17,4 +17,9 @@ public class UserServiceImpl implements UserService {
     public UserDO login(String name, String password) throws MyException {
         return userMapper.selectUserByNameAndPassword(name, password);
     }
+
+    @Override
+    public UserDO findUserById(String id) throws MyException {
+        return userMapper.selectUserById(id);
+    }
 }

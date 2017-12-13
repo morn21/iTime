@@ -23,6 +23,20 @@
     <link rel="stylesheet" href="/css/basic.css" type="text/css" />
 </footer>
 
-
+<footer th:fragment="userPublic">
+    <div class="panel panel-default marginTop10">
+        <button type="button" class="btn btn-link" style="margin-left:10px;" id="userPublic_returnIndexButton">
+            <span class="glyphicon glyphicon-home"></span>
+        </button>
+        <span style="float: right;">
+            <span class="glyphicon glyphicon-user"></span>
+            <span id="userPublic_userName"></span>
+            <button type="button" class="btn btn-link" id="userPublic_logoutButton">
+                退出
+            </button>
+        </span>
+    </div>
+    <script src="/js/footer/userPublic.js"></script>
+</footer>
 
 </html>

@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 
 /**
  * 数据源
- * @auther Horner 2017/12/11 23:33
+ * @auther Horner 2017/12/11 23:34
  */
 @ComponentScan
 @MapperScan("online.morn.itime.mapper")

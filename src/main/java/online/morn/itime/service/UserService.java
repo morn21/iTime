@@ -3,6 +3,7 @@ package online.morn.itime.service;
 
 import online.morn.itime.DO.UserDO;
 import online.morn.itime.util.MyException;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 用户服务
@@ -17,4 +18,12 @@ public interface UserService {
      * @throws MyException
      */
     public UserDO login(String name, String password) throws MyException;
+
+    /**
+     * 查询用户根据ID
+     * @auther Horner 2017/12/13 22:44
+     * @param id
+     * @return
+     */
+    public UserDO findUserById(String id) throws MyException;
 }

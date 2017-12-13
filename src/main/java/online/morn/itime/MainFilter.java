@@ -1,5 +1,12 @@
 package online.morn.itime;
 
+import online.morn.itime.DO.UserDO;
+import online.morn.itime.service.UserService;
+import online.morn.itime.util.MyException;
+import online.morn.itime.util.SessionKey;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
@@ -11,8 +18,6 @@ import java.util.Map;
  * @auther Horner 2017/11/27 20:42
  */
 public class MainFilter extends HttpServlet implements Filter {
-
-    private static final String COOKIE_USER_ID = "COOKIE_USER_ID";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -29,33 +34,25 @@ public class MainFilter extends HttpServlet implements Filter {
         String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
         HttpSession session = request.getSession(true);
 
-       /* UserDO userDO = (UserDO)session.getAttribute(SessionKey.USER);//获得用户实例
-        *//**做Session用户验证*//*
+        UserDO userDO = (UserDO)session.getAttribute(SessionKey.USER);//获得用户实例
+        /**做Session用户验证*/
         if(userDO == null){
-            *//**通过上下文获得用户服务*//*
+            /**通过上下文获得用户服务*/
             ServletContext context = request.getServletContext();
             ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(context);
             UserService userService = ctx.getBean(UserService.class);
-            *//**获得Cookie中的userId*//*
+            /**获得Cookie中的userId*/
             Map<String,String> cookieMap = this.getCookieMap(request);
-            String userId = cookieMap.get(COOKIE_USER_ID);
+            String userId = cookieMap.get(SessionKey.COOKIE_USER_ID);
             try {
                 if(userId != null){
                     userDO = userService.findUserById(userId);
+                    session.setAttribute(SessionKey.USER, userDO);//设置用户实例
                 }
-                if(userDO == null){
-                    userDO = userService.generateUser();
-                    *//**设置Cookie*//*
-                    Cookie cookie = new Cookie(COOKIE_USER_ID,userDO.getId());
-                    cookie.setMaxAge(315360000);//以秒为单位 60*60*24*365=10年
-                    cookie.setPath("/");
-                    response.addCookie(cookie);
-                }
-                session.setAttribute(SessionKey.USER, userDO);//设置用户实例
             } catch (MyException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
         filterChain.doFilter(servletRequest,servletResponse);
     }
 
