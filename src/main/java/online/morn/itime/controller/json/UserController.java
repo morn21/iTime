@@ -56,6 +56,16 @@ public class UserController {
         return JSONObject.toJSONString(modelMap);
     }
 
+    /**
+     * 登录用户
+     * @auther Horner 2017/12/13 23:28
+     * @param modelMap
+     * @param request
+     * @param response
+     * @param name
+     * @param password
+     * @return
+     */
     @RequestMapping(value = "/loginUser.json", method = {RequestMethod.GET , RequestMethod.POST})
     public String loginUser(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String name, String password) {
         try{
@@ -77,6 +87,30 @@ public class UserController {
         } catch (MyException e) {
             modelMap.put("success",false);
             modelMap.put("msg",e.getMessage());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return JSONObject.toJSONString(modelMap);
+    }
+
+    /**
+     * 退出用户
+     * @auther Horner 2017/12/13 23:30
+     * @param modelMap
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/logoutUser.json", method = {RequestMethod.GET , RequestMethod.POST})
+    public String logoutUser(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
+        try{
+            request.getSession().removeAttribute(SessionKey.USER);//清除用户Session
+            /**设置Cookie*/
+            Cookie cookie = new Cookie(SessionKey.COOKIE_USER_ID, null);
+            cookie.setMaxAge(0);//以秒为单位 设置为0 清除Cookie
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            modelMap.put("success",true);
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -7,7 +7,17 @@ $("#userPublic_returnIndexButton").click(function(){
 
 //点击退出登录按钮事件
 $("#userPublic_logoutButton").click(function(){
-
+    $.ajax({
+        type : "POST",  //提交方式
+        url : "/user/logoutUser.json",//路径
+        data : {},
+        dataType : "json",
+        success :  function(result){
+            if(result.success){
+                window.location.reload();
+            }
+        }
+    });
 });
 
 //初始化用户公共部分
