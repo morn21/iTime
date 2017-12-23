@@ -3,6 +3,7 @@ package online.morn.itime.controller.json;
 import com.alibaba.fastjson.JSONObject;
 import online.morn.itime.DO.UserDO;
 import online.morn.itime.service.UserService;
+import online.morn.itime.util.DateUtil;
 import online.morn.itime.util.MyException;
 import online.morn.itime.util.SessionKey;
 import org.apache.commons.lang.StringUtils;
@@ -34,7 +35,7 @@ public class UserController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/findCurrentUser.json", method = {RequestMethod.GET , RequestMethod.POST})
+    @RequestMapping(value = "/findCurrentUser.json", method = {RequestMethod.GET, RequestMethod.POST})
     public String findCurrentUser(ModelMap modelMap, HttpServletRequest request) {
         try{
             /**Session取值*/
@@ -66,7 +67,7 @@ public class UserController {
      * @param password
      * @return
      */
-    @RequestMapping(value = "/loginUser.json", method = {RequestMethod.GET , RequestMethod.POST})
+    @RequestMapping(value = "/loginUser.json", method = {RequestMethod.GET, RequestMethod.POST})
     public String loginUser(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, String name, String password) {
         try{
             if(StringUtils.isBlank(name) || StringUtils.isBlank(password)){
@@ -101,7 +102,7 @@ public class UserController {
      * @param response
      * @return
      */
-    @RequestMapping(value = "/logoutUser.json", method = {RequestMethod.GET , RequestMethod.POST})
+    @RequestMapping(value = "/logoutUser.json", method = {RequestMethod.GET, RequestMethod.POST})
     public String logoutUser(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
         try{
             request.getSession().removeAttribute(SessionKey.USER);//清除用户Session
@@ -110,6 +111,32 @@ public class UserController {
             cookie.setMaxAge(0);//以秒为单位 设置为0 清除Cookie
             cookie.setPath("/");
             response.addCookie(cookie);
+            modelMap.put("success",true);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return JSONObject.toJSONString(modelMap);
+    }
+
+    /**
+     * 开始计时
+     * @auther Horner 2017/12/16 16:40
+     * @param modelMap
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/startTiming.json", method = {RequestMethod.GET, RequestMethod.POST})
+    public String startTiming(ModelMap modelMap, HttpServletRequest request) {
+        try{
+            /**Session取值*/
+            UserDO userDO = (UserDO)request.getSession().getAttribute(SessionKey.USER);//获得用户实例
+            if(userDO == null){
+                throw new MyException("用户未登录");
+            }
+            userDO.setIsIng(1);
+            userDO.setIngStartTime(DateUtil.getDate());
+            userService.changeById(userDO);//修改用户信息 根据ID
+            request.getSession().setAttribute(SessionKey.USER, userDO);//设置用户实例
             modelMap.put("success",true);
         } catch (Exception e){
             e.printStackTrace();

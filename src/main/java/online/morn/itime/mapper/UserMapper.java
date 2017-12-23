@@ -10,6 +10,14 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper {
 
     /**
+     * 修改用户 根据用户ID
+     * @auther Horner 2017/12/16 16:35
+     * @param userDO
+     * @return
+     */
+    public Integer updateById(@Param("userDO") UserDO userDO);
+
+    /**
      * 查询用户 根据用户名和密码
      * @auther Horner 2017/12/11 23:31
      * @param name

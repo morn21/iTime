@@ -7,6 +7,16 @@
 
 <div class="panel-body">
     <div th:include="footer :: userPublic"></div>
+    <div class="panel panel-default marginTop10" style="text-align:center; display:block; padding: 10px;">
+        <button class="btn btn-success" type="button" id="startTimingButton" style="display: none;">
+            <span class="glyphicon glyphicon-time"></span>
+            开始计时
+        </button>
+        <button class="btn btn-success" type="button" id="endTimingButton" style="display: none;">
+            <span class="glyphicon glyphicon-time"></span>
+            已计时 <span class="badge" id="timingSecond">0</span> ，结束计时
+        </button>
+    </div>
 </div>
 
 </body>
