@@ -20,4 +20,9 @@ public class IndexController {
         return "login";
     }
 
+    @RequestMapping(value = {"/timeRecord"})
+    public String createTimeRecord() {
+        return "timeRecord";
+    }
+
 }

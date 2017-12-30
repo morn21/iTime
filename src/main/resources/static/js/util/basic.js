@@ -1,7 +1,7 @@
 
 var basic = {
-    /**获得当前时间*/
-    getNow : function(){
+    /**获得当前时间戳*/
+    getNowTimestamp : function(){
         var nowTime = new Date().getTime();
         if(basic["timeDifference"] == undefined){
             $.ajax({
@@ -18,7 +18,7 @@ var basic = {
                 }
             });
         }
-        return new Date(nowTime + basic["timeDifference"]);
+        return nowTime + basic["timeDifference"];
     },
     /**获得时间字符串*/
     getTimeStr : function(secondCount){

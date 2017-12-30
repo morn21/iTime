@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:include="footer :: headBasic"></div>
+</head>
+<body>
+
+<div class="panel-body">
+    <div th:include="footer :: userPublic"></div>
+
+    <!--
+
+    <div class="panel panel-default marginTop10" style="text-align:center; display:block; padding: 10px;">
+        <button class="btn btn-success" type="button" id="startTimingButton" style="display: none;">
+            <span class="glyphicon glyphicon-time"></span>
+            开始计时
+        </button>
+        <button class="btn btn-success" type="button" id="endTimingButton" style="display: none;">
+            <span class="glyphicon glyphicon-time"></span>
+            已计时 <span class="badge" id="timingSecond">0</span> ，结束计时
+        </button>
+    </div>
+    -->
+    <div class="input-group marginTop10">
+        <span class="input-group-addon">开始时间</span>
+        <input type="text" class="form-control" placeholder="开始时间"/>
+    </div>
+    <div class="input-group marginTop10">
+        <span class="input-group-addon">结束时间</span>
+        <input type="text" class="form-control" placeholder="结束时间"/>
+    </div>
+    <div class="input-group marginTop10">
+        <span class="input-group-addon">事件时长</span>
+        <input type="text" class="form-control" disabled="disabled"/>
+    </div>
+    <div class="input-group marginTop10">
+        <span class="input-group-addon">事件分类</span>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                <span>默认【未分类】</span>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">学习</a></li>
+                <li><a href="#">运动</a></li>
+                <li><a href="#">上班</a></li>
+                <li><a href="#">睡觉</a></li>
+                <li><a href="#">测试一个很长很长很长很长很长很长很长很长很长的分类</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel panel-default marginTop10">
+        <div class="panel-heading">备注</div>
+        <div class="panel-body">
+            <textarea class="form-control" rows="5"></textarea>
+        </div>
+    </div>
+    <div class="marginTop10">
+        <button class="btn btn-success" type="button" id="confirmCreateRoomButton">
+            保存事件
+        </button>
+        <button class="btn btn-default" type="button">
+            取消
+        </button>
+    </div>
+
+</div>
+
+</body>
+</html>
+<script src="/js/page/createTimeRecord.js"></script>

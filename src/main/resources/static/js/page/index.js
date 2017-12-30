@@ -15,11 +15,15 @@ $("#startTimingButton").click(function(){
     });
 });
 
-var ingStartTime = 0;
+$("#endTimingButton").click(function(){
+    window.location.href = "/timeRecord";
+});
+
+var ingStartTimestamp = 0;
 
 //执行计时
 var executeTimingSecond = function(){
-    var secondCount = parseInt((basic.getNow().getTime() - ingStartTime) / 1000);
+    var secondCount = parseInt((basic.getNowTimestamp() - ingStartTimestamp) / 1000);
     $("#timingSecond").html(basic.getTimeStr(secondCount));
     setTimeout(executeTimingSecond,1000);
 };
@@ -38,7 +42,7 @@ var iniUserPublic = function(){
                     $("#startTimingButton").css("display","inline");
                 } else {
                     $("#endTimingButton").css("display","inline");
-                    ingStartTime = data.user.ingStartTime;
+                    ingStartTimestamp = data.user.ingStartTime;
                     executeTimingSecond();//执行计时
                 }
             } else{

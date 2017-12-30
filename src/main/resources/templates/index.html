@@ -2,11 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:include="footer :: headBasic"></div>
+    <style type="text/css">
+        .index-menu-right{
+            font-size:26px;
+            color:#BFBFBF;
+            position:absolute;
+            right:0px;
+            top:6px;
+        }
+    </style>
 </head>
 <body>
 
 <div class="panel-body">
     <div th:include="footer :: userPublic"></div>
+
     <div class="panel panel-default marginTop10" style="text-align:center; display:block; padding: 10px;">
         <button class="btn btn-success" type="button" id="startTimingButton" style="display: none;">
             <span class="glyphicon glyphicon-time"></span>
@@ -14,8 +24,59 @@
         </button>
         <button class="btn btn-success" type="button" id="endTimingButton" style="display: none;">
             <span class="glyphicon glyphicon-time"></span>
-            已计时 <span class="badge" id="timingSecond">0</span> ，结束计时
+            结束计时
+            <span class="badge" id="timingSecond">0</span>
         </button>
+        <button class="btn btn-success" type="button">
+            流水
+        </button>
+    </div>
+
+    <div class="panel panel-default marginTop10">
+        <div class="list-group">
+            <li href="#" class="list-group-item">
+                <div style="position: relative;">
+                    <div>
+                        <span style="font-weight:600;">跑步120个小时</span>
+                    </div>
+                    <div>
+                        <span style="font-size:10px; color:#999999;">
+                            剩余时长:
+                            <span>11:11:11:11</span>
+                        </span>
+                    </div>
+                    <span class="glyphicon glyphicon-menu-right index-menu-right"></span>
+                </div>
+            </li>
+            <li href="#" class="list-group-item">
+                <div style="position: relative;">
+                    <div>
+                        <span style="font-weight:600;">游泳120个小时</span>
+                    </div>
+                    <div>
+                        <span style="font-size:10px; color:#999999;">
+                            剩余时长:
+                            <span>11:11:11:11</span>
+                        </span>
+                    </div>
+                    <span class="glyphicon glyphicon-menu-right" style="font-size:26px; color:#BFBFBF; position:absolute; right:0px; top:6px;"></span>
+                </div>
+            </li>
+            <li href="#" class="list-group-item">
+                <div style="position: relative;">
+                    <div>
+                        <span style="font-weight:600;">看5本书</span>
+                    </div>
+                    <div>
+                        <span style="font-size:10px; color:#999999;">
+                            剩余时长:
+                            <span>11:11:11:11</span>
+                        </span>
+                    </div>
+                    <span class="glyphicon glyphicon-menu-right" style="font-size:26px; color:#BFBFBF; position:absolute; right:0px; top:6px;"></span>
+                </div>
+            </li>
+        </div>
     </div>
 </div>
 
